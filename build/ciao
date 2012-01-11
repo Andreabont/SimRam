@@ -1,0 +1,11 @@
+read 1
+load 1
+store 2
+debug 1
+read 1
+load 1
+store 3
+debug 1
+write 1
+write 2
+halt
