@@ -110,7 +110,7 @@ int main(int argc, char **argv) {
 	  } else if(line[0] == "write")
 	  {
 	      if(vm.count("verbose")) cout<<"Write: M["<<line[1]<<"] --> "<<registers[boost::lexical_cast<int>(line[1])]<<endl;
-	      outtape += boost::lexical_cast<char>(registers[boost::lexical_cast<int>(line[1])]);
+	      outtape += boost::lexical_cast<string>(registers[boost::lexical_cast<int>(line[1])]);
 	    
 	  } else if(line[0] == "load")
 	  {
@@ -122,6 +122,26 @@ int main(int argc, char **argv) {
 	      if(vm.count("verbose")) cout<<"Working Memory --> M["<<line[1]<<"]"<<endl;
 	      registers[boost::lexical_cast<int>(line[1])] = registers[0];
 	    
+	  } else if(line[0] == "add")
+	  {
+	      if(vm.count("verbose")) cout<<"M[0] + M["<<line[1]<<"] --> M[0]"<<endl;
+	      registers[0] = registers[0] + registers[boost::lexical_cast<int>(line[1])];
+	    
+	  } else if(line[0] == "sub")
+	  {
+	      if(vm.count("verbose")) cout<<"M[0] - M["<<line[1]<<"] --> M[0]"<<endl;
+	      registers[0] = registers[0] - registers[boost::lexical_cast<int>(line[1])];	    
+	    
+	  } else if(line[0] == "mul")
+	  {
+	      if(vm.count("verbose")) cout<<"M[0] * M["<<line[1]<<"] --> M[0]"<<endl;
+	      registers[0] = registers[0] * registers[boost::lexical_cast<int>(line[1])];
+	    
+	  } else if(line[0] == "div")
+	  {
+	      if(vm.count("verbose")) cout<<"M[0] / M["<<line[1]<<"] --> M[0]"<<endl;
+	      registers[0] = registers[0] / registers[boost::lexical_cast<int>(line[1])];
+	      
 	  } else if(line[0] == "debug")
 	  {
 	      if(!vm.count("verbose")) break;
