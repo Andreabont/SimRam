@@ -4,7 +4,7 @@
 // Author      : Andrea Bontempi
 // Version     : 0.1
 // Copyright   : GNU GPL3
-// Description : RAM Simulator (Von Neumann Machine)
+// Description : RAM Emulator (Von Neumann Machine)
 //============================================================================
 
 #include <iostream>
@@ -19,7 +19,7 @@ using namespace std;
 using namespace boost::program_options;
 
 int main(int argc, char **argv) {
-        options_description desc("SimRam - RAM Simulator");
+        options_description desc("SimRam - RAM Emulator");
         desc.add_options()
                 ("help", "prints this")
 		("verbose", "enable verbose mode")
