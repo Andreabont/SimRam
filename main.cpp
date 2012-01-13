@@ -229,15 +229,38 @@ int main(int argc, char **argv) {
 	      if(vm.count("verbose")) cout<<"M[0] / M[M["<<line[1]<<"]] --> M[0]"<<endl;
 	      registers[0] = registers[0] / registers[registers[boost::lexical_cast<int>(line[1])]];
 	      
-	  } else if(line[0] == "jmp")
+	  } else if(line[0] == "jmp" || line[0] == "jump")
 	  {
 	      if(vm.count("verbose")) cout<<"Jump to LABEL '"<<line[1]<<"'"<<endl;
 	      source_file.seekg(know_label[line[1]], ios::beg);
 	    
+	  } else if(line[0] == "jz")
+	  {
+	      if(registers[0] == 0)
+	      {
+		if(vm.count("verbose")) cout<<"Jump to LABEL '"<<line[1]<<"'"<<endl;
+		source_file.seekg(know_label[line[1]], ios::beg);
+	      }
+	      else
+	      {
+		if(vm.count("verbose")) cout<<"Not jump: M[0] != 0 '"<<endl;
+	      }
+	    
+	  } else if(line[0] == "jgz")
+	  {
+	      if(registers[0] > 0)
+	      {
+		if(vm.count("verbose")) cout<<"Jump to LABEL '"<<line[1]<<"'"<<endl;
+		source_file.seekg(know_label[line[1]], ios::beg);
+	      }
+	      else
+	      {
+		if(vm.count("verbose")) cout<<"Not jump: M[0] < 0 '"<<endl;
+	      }
+	    
 	  } else if(line[0] == "label")
 	  {
 	      if(vm.count("verbose")) cout<<"Found LABEL '"<<line[1]<<"'"<<endl;
-	      break;
 	      
 	  } else if(line[0] == "debug")
 	  {
