@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/andreabont/Git/SimRam/main.cpp
+iostream
+-
+fstream
+-
+string
+-
+boost/program_options.hpp
+-
+boost/lexical_cast.hpp
+-
+boost/algorithm/string/split.hpp
+-
+boost/algorithm/string/classification.hpp
+-
+

@@ -1,0 +1,5 @@
+load= 0
+store 1
+load= 4
+debug 1
+halt

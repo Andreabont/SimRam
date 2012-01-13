@@ -1,0 +1,31 @@
+RAM ISA:
+
+load X		M[0] <- M[X]
+load= X		M[0] <- X
+load* X		M[0] <- M[M[X]]
+
+store X		M[0] -> M[X]
+store* X	M[0] -> M[M[X]]
+
+read X		Tape -> M[X]
+read* X		Tape -> M[M[X]]
+
+write X		Tape <- M[X]
+write= X	Tape <- X
+write* X	Tape <- M[M[X]]
+
+// NB: operator can be {add, sub, mul, div}
+
+operator X	M[0] <- M[0] op M[X]	
+operator= X	M[0] <- M[0] op X
+operator* X	M[0] <- M[0] op M[M[X]]
+
+jmp LABEL	Jump to 'LABEL'
+jz LABEL
+jeq LABEL
+jne LABEL
+jge LABEL
+jle LABEL
+lst LABEL
+
+halt		Stop execution (required)

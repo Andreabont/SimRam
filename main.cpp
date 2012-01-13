@@ -98,7 +98,6 @@ int main(int argc, char **argv) {
 	  
 	  // Decode / Execute
 	  
-	  // TODO block work on M[0]
 	  // TODO remove pointer overflow on registers
 	  
 	  if(line[0] == "read")
@@ -107,20 +106,51 @@ int main(int argc, char **argv) {
 	      registers[boost::lexical_cast<int>(line[1])] = boost::lexical_cast<int>(intape[inpointer]);
 	      inpointer++;
 	      
+	  } else if(line[0] == "read*")
+	  {
+	      if(vm.count("verbose")) cout<<"Read: "<<intape[inpointer]<<" --> M[M["<<line[1]<<"]]"<<endl;
+	      registers[registers[boost::lexical_cast<int>(line[1])]] = boost::lexical_cast<int>(intape[inpointer]);
+	      inpointer++;
+	    
 	  } else if(line[0] == "write")
 	  {
-	      if(vm.count("verbose")) cout<<"Write: M["<<line[1]<<"] --> "<<registers[boost::lexical_cast<int>(line[1])]<<endl;
+	      if(vm.count("verbose")) cout<<"Write: M["<<line[1]<<"] = "<<registers[boost::lexical_cast<int>(line[1])]<<endl;
 	      outtape += boost::lexical_cast<string>(registers[boost::lexical_cast<int>(line[1])]);
+	    
+	  } else if(line[0] == "write=")
+	  {
+	      if(vm.count("verbose")) cout<<"Write: "<<line[1]<<endl;
+	      outtape += line[1];
+	    
+	  } else if(line[0] == "write*")
+	  {
+	      if(vm.count("verbose")) cout<<"Write: M[M["<<line[1]<<"]] = "<<registers[registers[boost::lexical_cast<int>(line[1])]]<<endl;
+	      outtape += boost::lexical_cast<string>(registers[registers[boost::lexical_cast<int>(line[1])]]);
 	    
 	  } else if(line[0] == "load")
 	  {
 	      if(vm.count("verbose")) cout<<"M["<<line[1]<<"] --> Working Memory"<<endl;
 	      registers[0] = registers[boost::lexical_cast<int>(line[1])];
 	      
+	  } else if(line[0] == "load=")
+	  {
+	      if(vm.count("verbose")) cout<<"Value: "<<line[1]<<" --> Working Memory"<<endl;
+	      registers[0] = boost::lexical_cast<int>(line[1]);
+	      
+	  } else if(line[0] == "load*")
+	  {
+	      if(vm.count("verbose")) cout<<"M[M["<<line[1]<<"]] --> Working Memory"<<endl;
+	      registers[0] = registers[registers[boost::lexical_cast<int>(line[1])]];
+	      
 	  } else if(line[0] == "store")
 	  {
 	      if(vm.count("verbose")) cout<<"Working Memory --> M["<<line[1]<<"]"<<endl;
 	      registers[boost::lexical_cast<int>(line[1])] = registers[0];
+	    
+	  } else if(line[0] == "store*")
+	  {
+	      if(vm.count("verbose")) cout<<"Working Memory --> M[M["<<line[1]<<"]]"<<endl;
+	      registers[registers[boost::lexical_cast<int>(line[1])]] = registers[0];
 	    
 	  } else if(line[0] == "add")
 	  {
