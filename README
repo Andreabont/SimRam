@@ -1,4 +1,7 @@
-RAM ISA:
+To read the theoretical part go to:
+http://en.wikipedia.org/wiki/Random_access_machine
+
+##RAM ISA
 
 load X		M[0] <- M[X]
 load= X		M[0] <- X
@@ -21,11 +24,16 @@ operator= X	M[0] <- M[0] op X
 operator* X	M[0] <- M[0] op M[M[X]]
 
 jmp LABEL	Jump to 'LABEL'
-jz LABEL
-jeq LABEL
-jne LABEL
-jge LABEL
-jle LABEL
-lst LABEL
+jz LABEL	Jump to 'LABEL' if M[0] = 0
+jgz LABEL	Jump to 'LABEL' if M[0] > 0
 
 halt		Stop execution (required)
+
+##Extended ISA
+
+label LABEL	Set 'LABEL' on the next istruction.
+debug X		Call the X° debug function.
+
+##Debug function
+
+1 		Registers dump.
