@@ -108,6 +108,9 @@ int main(int argc, char **argv) {
 	    cout<<"Completed execution with output: "<<outtape<<endl;
 	    source_file.close();
 	    return EXIT_SUCCESS;
+	  } else if(fetch == "" || fetch[0] == '#')
+	  {
+	    continue;
 	  }
 	  
 	  vector<string> line;
@@ -120,12 +123,22 @@ int main(int argc, char **argv) {
 	  if(line[0] == "read")
 	  {
 	      if(vm.count("verbose")) cout<<"Read: "<<intape[inpointer]<<" --> M["<<line[1]<<"]"<<endl;
+	      if(intape[inpointer] == NULL)
+	      {
+		  cerr<<"<!> The input tape is finished."<<endl;
+		  return EXIT_FAILURE;
+	      }
 	      registers[boost::lexical_cast<int>(line[1])] = boost::lexical_cast<int>(intape[inpointer]);
 	      inpointer++;
 	      
 	  } else if(line[0] == "read*")
 	  {
 	      if(vm.count("verbose")) cout<<"Read: "<<intape[inpointer]<<" --> M[M["<<line[1]<<"]]"<<endl;
+	      if(intape[inpointer] == NULL)
+	      {
+		  cerr<<"<!> The input tape is finished."<<endl;
+		  return EXIT_FAILURE;
+	      }
 	      registers[registers[boost::lexical_cast<int>(line[1])]] = boost::lexical_cast<int>(intape[inpointer]);
 	      inpointer++;
 	    
@@ -243,7 +256,7 @@ int main(int argc, char **argv) {
 	      }
 	      else
 	      {
-		if(vm.count("verbose")) cout<<"Not jump: M[0] != 0 '"<<endl;
+		if(vm.count("verbose")) cout<<"Can't jump: M[0] != 0 "<<endl;
 	      }
 	    
 	  } else if(line[0] == "jgz")
@@ -255,7 +268,7 @@ int main(int argc, char **argv) {
 	      }
 	      else
 	      {
-		if(vm.count("verbose")) cout<<"Not jump: M[0] < 0 '"<<endl;
+		if(vm.count("verbose")) cout<<"Can't jump: M[0] < 0 "<<endl;
 	      }
 	    
 	  } else if(line[0] == "label")

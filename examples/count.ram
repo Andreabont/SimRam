@@ -1,0 +1,29 @@
+# This program read N (0-9) and count 0 -> N
+# In the count print '1' for every odd number.
+
+read 1
+load= 1
+store 2
+
+label LOOP
+
+load 2
+sub 1
+jgz END
+load 2
+div= 2
+mul= 2
+sub 2
+jz NO
+write= 1
+
+label NO
+
+load 2
+add= 1
+store 2
+jmp LOOP
+
+label END
+
+halt

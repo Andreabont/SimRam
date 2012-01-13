@@ -29,10 +29,11 @@ jgz LABEL	Jump to 'LABEL' if M[0] > 0
 
 halt		Stop execution (required)
 
-##Extended ISA
+##Syntax for the emulator
 
 label LABEL	Set 'LABEL' on the next istruction.
 debug X		Call the X° debug function.
+# XXX		Ignore line 'XXX'
 
 ##Debug function
 

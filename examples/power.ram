@@ -1,0 +1,20 @@
+# This program read a number X (0-9) and print X^X
+# License GNU GPL3 
+
+read 0
+store 1
+store 2
+load= 1
+store 3
+
+label LOOP
+load 1
+mul 3
+store 3
+load 2
+sub= 1
+store 2
+jgz LOOP
+
+write 3
+halt
