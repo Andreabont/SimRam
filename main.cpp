@@ -82,6 +82,21 @@ int main(int argc, char **argv) {
 	
 	// TODO search LABEL.
 	
+	map<string, int> know_label;
+	
+	while(source_file.good())
+	{
+	  getline(source_file, fetch);
+	  if(fetch == "halt") break;
+
+	  vector<string> line;
+	  boost::algorithm::split(line, fetch, boost::algorithm::is_any_of(" "));
+	  
+	  if(line[0] == "label") know_label[line[1]] = source_file.tellg();
+	}
+	
+	source_file.seekg(0, ios::beg);
+	
 	while(source_file.good())
 	{
 	  // Fetch
@@ -217,11 +232,12 @@ int main(int argc, char **argv) {
 	  } else if(line[0] == "jmp")
 	  {
 	      if(vm.count("verbose")) cout<<"Jump to LABEL '"<<line[1]<<"'"<<endl;
-	      // TODO
+	      source_file.seekg(know_label[line[1]], ios::beg);
 	    
 	  } else if(line[0] == "label")
 	  {
 	      if(vm.count("verbose")) cout<<"Found LABEL '"<<line[1]<<"'"<<endl;
+	      break;
 	      
 	  } else if(line[0] == "debug")
 	  {
