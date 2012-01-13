@@ -1,5 +1,0 @@
-load= 2
-read* 0
-debug 1
-write 2
-halt
