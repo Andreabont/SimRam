@@ -84,20 +84,22 @@ int main(int argc, char **argv) {
 	
 	map<string, int> know_label;
 	
-	while(source_file.good())
+	while(!source_file.eof())
 	{
 	  getline(source_file, fetch);
-	  if(fetch == "halt") break;
 
+	  if(fetch == "halt" || fetch[0] == '#') continue;
+	  
 	  vector<string> line;
 	  boost::algorithm::split(line, fetch, boost::algorithm::is_any_of(" "));
 	  
 	  if(line[0] == "label") know_label[line[1]] = source_file.tellg();
 	}
 	
+	source_file.clear();
 	source_file.seekg(0, ios::beg);
 	
-	while(source_file.good())
+	while(!source_file.eof())
 	{
 	  // Fetch
 	  
