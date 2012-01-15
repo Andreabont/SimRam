@@ -271,6 +271,11 @@ int main(int argc, char **argv) {
 	  } else if(line[0] == "jmp" || line[0] == "jump")
 	  {
 	      if(vm.count("verbose")) cout<<"Jump to LABEL '"<<line[1]<<"'"<<endl;
+	      if(know_label[line[1]] == NULL)
+	      {
+		cerr<<"<!> Label '"<<line[1]<<"' not found."<<endl;
+		return EXIT_FAILURE;
+	      }
 	      source_file.seekg(know_label[line[1]], ios::beg);
 	    
 	  } else if(line[0] == "jz")
@@ -278,6 +283,11 @@ int main(int argc, char **argv) {
 	      if(registers[0] == 0)
 	      {
 		if(vm.count("verbose")) cout<<"Jump to LABEL '"<<line[1]<<"'"<<endl;
+		if(know_label[line[1]] == NULL)
+		{
+		  cerr<<"<!> Label '"<<line[1]<<"' not found."<<endl;
+		  return EXIT_FAILURE;
+		}
 		source_file.seekg(know_label[line[1]], ios::beg);
 	      }
 	      else
@@ -290,6 +300,11 @@ int main(int argc, char **argv) {
 	      if(registers[0] > 0)
 	      {
 		if(vm.count("verbose")) cout<<"Jump to LABEL '"<<line[1]<<"'"<<endl;
+	        if(know_label[line[1]] == NULL)
+	        {
+		  cerr<<"<!> Label '"<<line[1]<<"' not found."<<endl;
+		  return EXIT_FAILURE;
+	        }
 		source_file.seekg(know_label[line[1]], ios::beg);
 	      }
 	      else
