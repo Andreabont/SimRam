@@ -1,5 +1,4 @@
 # This program read a number X (0-9) and print X^X
-# License GNU GPL3 
 
 read 0
 store 1
