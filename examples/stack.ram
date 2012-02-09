@@ -1,0 +1,40 @@
+# M[1] = n° char
+# M[2] = stack pointer
+
+# Input: <number of char><sequence of char>
+# Example: 41234 --> "1234" have 4 char.
+
+read 1
+load= 3
+store 2
+
+label FIRSTLOOP
+
+load 2
+sub= 3
+sub 1
+
+jz SECONDLOOP
+
+read 0
+store* 2
+load 2
+add= 1
+store 2
+jmp FIRSTLOOP
+
+label SECONDLOOP
+
+load 2
+sub= 3
+jz END
+
+load 2
+sub= 1
+store 2
+
+write* 2
+jmp SECONDLOOP
+
+label END
+halt
