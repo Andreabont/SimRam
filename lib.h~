@@ -1,0 +1,6 @@
+#ifndef LIB_H
+#define LIB_H
+
+bool error_registers(int);
+
+#endif //LIB_H

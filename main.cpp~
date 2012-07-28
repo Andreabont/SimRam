@@ -133,7 +133,6 @@ int main(int argc, char **argv) {
         // Decode / Execute
 
         // TODO remove pointer overflow on registers
-	// TODO usa una hashmap con comando --> puntatore funzione per migliorare esecuzione.
 
         if(line[0] == "read")
         {

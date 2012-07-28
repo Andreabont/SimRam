@@ -3,7 +3,7 @@ set(CMAKE_BUILD_TYPE Release)
 cmake_minimum_required(VERSION 2.6)
 project(SIMRAM)
 
-set(MAIN_SRCS lib.h lib.cpp main.cpp)
+set(MAIN_SRCS main.cpp)
 add_executable(simram ${MAIN_SRCS})
 
 set(BOOST_LIBS program_options system)
